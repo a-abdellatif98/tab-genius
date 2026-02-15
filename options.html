@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tab Genius Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="settings-container">
+    <header>
+      <h1>🧠 Tab Genius Settings</h1>
+      <p>Configure your tab organization preferences</p>
+    </header>
+
+    <div class="settings-content">
+      <!-- Claude API Settings (hidden for now) -->
+      <section class="settings-section hidden">
+        <h2>🤖 Claude API Configuration</h2>
+        <p class="section-description">
+          Enable automatic tab organization using Claude AI. Get your API key from
+          <a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a>
+        </p>
+
+        <div class="form-group">
+          <label for="apiKey">Claude API Key</label>
+          <input
+            type="password"
+            id="apiKey"
+            placeholder="sk-ant-..."
+            class="form-input"
+          >
+          <button id="toggleApiKey" class="btn-link">Show</button>
+        </div>
+
+        <div class="form-group">
+          <button id="testApiKey" class="btn btn-secondary">Test API Key</button>
+          <span id="apiKeyStatus" class="status-message"></span>
+        </div>
+      </section>
+
+      <!-- General Settings -->
+      <section class="settings-section">
+        <h2>⚙️ General Settings</h2>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="autoCloseOldTabs">
+            Automatically close tabs inactive for more than
+          </label>
+          <select id="inactiveHours" class="form-select">
+            <option value="24">24 hours</option>
+            <option value="48">48 hours</option>
+            <option value="72">3 days</option>
+            <option value="168">1 week</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="autoBookmarkDocs">
+            Automatically bookmark documentation and learning resources
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="closeAfterBookmark">
+            Close tabs after bookmarking them
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="bookmarkSaveLocation">Where to save bookmarks</label>
+          <select id="bookmarkSaveLocation" class="form-select-full">
+            <option value="bookmark_bar">Bookmark Bar (flat)</option>
+            <option value="other_bookmarks">Other Bookmarks (flat)</option>
+            <option value="category_folder" selected>Category folder (Tab Genius → Category name)</option>
+          </select>
+        </div>
+
+        <div id="bookmarkFolderParentGroup" class="form-group">
+          <label for="bookmarkFolderParent">Category folder location</label>
+          <select id="bookmarkFolderParent" class="form-select-full">
+            <option value="bookmark_bar">Inside Bookmark Bar</option>
+            <option value="other_bookmarks" selected>Inside Other Bookmarks</option>
+          </select>
+          <p class="form-hint">Creates "Tab Genius" folder with subfolders named by category (e.g., Documentation, Social Media)</p>
+        </div>
+      </section>
+
+      <!-- Categorization Settings -->
+      <section class="settings-section">
+        <h2>📂 Categorization</h2>
+
+        <div class="form-group">
+          <label>Default action for each category:</label>
+        </div>
+
+        <div class="category-settings">
+          <div class="category-rule">
+            <span class="category-name">Social Media</span>
+            <select class="category-action" data-category="SOCIAL">
+              <option value="close">Close old tabs</option>
+              <option value="keep">Keep all</option>
+              <option value="ask">Ask each time</option>
+            </select>
+          </div>
+
+          <div class="category-rule">
+            <span class="category-name">Work & Productivity</span>
+            <select class="category-action" data-category="WORK">
+              <option value="keep" selected>Keep all</option>
+              <option value="close">Close old tabs</option>
+              <option value="ask">Ask each time</option>
+            </select>
+          </div>
+
+          <div class="category-rule">
+            <span class="category-name">Shopping</span>
+            <select class="category-action" data-category="SHOPPING">
+              <option value="keep">Keep all</option>
+              <option value="close">Close old tabs</option>
+              <option value="ask" selected>Ask each time</option>
+            </select>
+          </div>
+
+          <div class="category-rule">
+            <span class="category-name">Documentation</span>
+            <select class="category-action" data-category="DOCUMENTATION">
+              <option value="bookmark" selected>Bookmark useful</option>
+              <option value="keep">Keep all</option>
+              <option value="close">Close old tabs</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Custom Categories -->
+      <section class="settings-section">
+        <h2>➕ Custom Categories</h2>
+        <p class="section-description">
+          Define your own categories with custom domains and keywords. Custom categories are checked before built-in ones.
+        </p>
+
+        <div id="customCategoriesList" class="custom-categories-list"></div>
+
+        <div id="categoryForm" class="category-form hidden">
+          <h3 id="categoryFormTitle">Add Custom Category</h3>
+          <div class="form-group">
+            <label for="customCategoryName">Category Name</label>
+            <input type="text" id="customCategoryName" class="form-input form-input-full" placeholder="e.g., Finance, Gaming">
+          </div>
+          <div class="form-group">
+            <label for="customCategoryDomains">Domains (one per line)</label>
+            <textarea id="customCategoryDomains" class="form-textarea" rows="3" placeholder="bank.com&#10;investing.com&#10;paypal.com"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="customCategoryKeywords">Keywords (comma-separated)</label>
+            <input type="text" id="customCategoryKeywords" class="form-input form-input-full" placeholder="e.g., bank, stock, portfolio">
+          </div>
+          <div class="form-group form-row">
+            <div>
+              <label for="customCategoryColor">Display Color</label>
+              <input type="color" id="customCategoryColor" value="#22c55e" class="form-color">
+            </div>
+            <div>
+              <label for="customCategoryGroupColor">Tab Group Color</label>
+              <select id="customCategoryGroupColor" class="form-select-full">
+                <option value="grey">Grey</option>
+                <option value="blue">Blue</option>
+                <option value="red">Red</option>
+                <option value="yellow">Yellow</option>
+                <option value="green" selected>Green</option>
+                <option value="pink">Pink</option>
+                <option value="purple">Purple</option>
+                <option value="cyan">Cyan</option>
+                <option value="orange">Orange</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button id="saveCategoryBtn" class="btn btn-primary">Save Category</button>
+            <button id="cancelCategoryBtn" class="btn btn-ghost">Cancel</button>
+          </div>
+        </div>
+
+        <button id="addCategoryBtn" class="btn btn-secondary">+ Add Custom Category</button>
+      </section>
+
+      <!-- About Section -->
+      <section class="settings-section">
+        <h2>ℹ️ About</h2>
+        <p><strong>Tab Genius</strong> v1.0.0</p>
+        <p>AI-powered browser tab organization with smart categorization.</p>
+        <p class="about-links">
+          <a href="#" id="viewDocs">Documentation</a> •
+          <a href="#" id="reportIssue">Report Issue</a> •
+          <a href="#" id="rateExtension">Rate Extension</a>
+        </p>
+      </section>
+
+      <div class="settings-actions">
+        <button id="saveSettings" class="btn btn-primary">Save Settings</button>
+        <button id="resetSettings" class="btn btn-ghost">Reset to Defaults</button>
+      </div>
+
+      <div id="saveStatus" class="save-status hidden"></div>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

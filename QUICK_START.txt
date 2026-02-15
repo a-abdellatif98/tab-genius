@@ -1,0 +1,135 @@
+TAB GENIUS - QUICK START GUIDE
+==============================
+
+INSTALLATION (5 MINUTES)
+------------------------
+
+Step 1: Add Icons (REQUIRED)
+   - Go to the 'icons' folder
+   - Read ICONS_NEEDED.txt for instructions
+   - Add three icon files (icon16.png, icon48.png, icon128.png)
+   - Simplest: Screenshot a brain emoji 🧠 and resize it!
+
+Step 2: Install in Chrome
+   - Open Chrome
+   - Go to: chrome://extensions/
+   - Enable "Developer mode" (top-right toggle)
+   - Click "Load unpacked"
+   - Select the entire 'tab-genius-extension' folder
+   - Done! The extension is now installed
+
+Step 3: Pin to Toolbar
+   - Click the puzzle icon in Chrome toolbar
+   - Find "Tab Genius"
+   - Click the pin icon
+   - Now you can access it anytime!
+
+BASIC USAGE (MANUAL MODE)
+--------------------------
+
+1. Open many tabs in Chrome (or use your existing tabs)
+
+2. Click the Tab Genius icon in toolbar
+
+3. You'll see:
+   - Total tabs
+   - How many to close
+   - How many to bookmark
+   - Categories summary
+
+4. Click "View Full Dashboard" button
+
+5. Review each category:
+   - Tabs are automatically categorized
+   - Each tab has a suggested action (Keep/Close/Bookmark)
+   - You can change the action using the dropdown
+
+6. Select tabs you want to process (checkboxes)
+
+7. Click "Execute Selected" button
+
+8. Confirm the action
+
+9. A report file will be downloaded automatically!
+
+USING CLAUDE API (AUTO MODE)
+-----------------------------
+
+1. Get API Key:
+   - Go to: https://console.anthropic.com/
+   - Sign up or log in
+   - Create an API key
+   - Copy the key (starts with sk-ant-...)
+
+2. Configure Extension:
+   - Click Tab Genius icon
+   - Click Settings (gear icon)
+   - Paste your API key
+   - Click "Test API Key"
+   - Click "Save Settings"
+
+3. Use Auto Mode:
+   - Open the dashboard
+   - Click "Auto Mode (Claude)" button
+   - Wait for Claude to analyze
+   - Review the AI suggestions
+   - Execute when ready!
+
+TIPS & TRICKS
+-------------
+
+✅ Start Small:
+   - Test with 10-20 tabs first
+   - See how categorization works
+   - Then use on all your tabs
+
+✅ Review Before Executing:
+   - Always check suggestions
+   - Change actions if needed
+   - Some tabs may be miscategorized
+
+✅ Customize Settings:
+   - Set default actions for each category
+   - Configure auto-close timing
+   - Choose bookmark behavior
+
+✅ Keep Reports:
+   - Reports show what was closed
+   - Includes all URLs
+   - Helps recover accidentally closed tabs
+
+COMMON ISSUES
+-------------
+
+❌ Extension won't load:
+   → Make sure icons are added first!
+   → Check Developer mode is enabled
+   → Verify all files are in the folder
+
+❌ No tabs showing:
+   → Extension skips chrome:// pages
+   → Open some regular websites
+   → Refresh and try again
+
+❌ API key not working:
+   → Verify it starts with sk-ant-
+   → Check you have credits on Anthropic
+   → Use "Test API Key" button
+
+NEXT STEPS
+----------
+
+1. Try the manual mode first
+2. Experiment with different categories
+3. Add your Claude API key for auto mode
+4. Customize settings to your preferences
+5. Run it regularly to keep tabs organized!
+
+NEED HELP?
+----------
+
+- Read the full README.md for detailed documentation
+- Check the code comments in JavaScript files
+- All settings are in the Settings page
+
+Happy organizing! 🧠✨

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tab Genius Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="dashboard">
+    <header class="header">
+      <div class="header-content">
+        <h1>🧠 Tab Genius Dashboard</h1>
+        <div class="header-actions">
+          <button id="refreshBtn" class="btn btn-ghost">🔄 Refresh</button>
+          <button id="settingsBtn" class="btn btn-ghost">⚙️ Settings</button>
+        </div>
+      </div>
+    </header>
+
+    <div id="loading" class="loading-overlay">
+      <div class="loading-content">
+        <div class="spinner-large"></div>
+        <p>Analyzing your tabs...</p>
+      </div>
+    </div>
+
+    <div id="content" class="content hidden">
+      <!-- Summary Section -->
+      <section class="summary-section">
+        <div class="summary-card">
+          <div class="summary-icon">📊</div>
+          <div class="summary-content">
+            <div class="summary-number" id="totalTabs">0</div>
+            <div class="summary-label">Total Tabs</div>
+          </div>
+        </div>
+        <div class="summary-card clickable" data-list-action="close" id="suggestCloseCard">
+          <div class="summary-icon">❌</div>
+          <div class="summary-content">
+            <div class="summary-number" id="suggestClose">0</div>
+            <div class="summary-label">Suggested to Close</div>
+          </div>
+        </div>
+        <div class="summary-card clickable" data-list-action="bookmark" id="suggestBookmarkCard">
+          <div class="summary-icon">⭐</div>
+          <div class="summary-content">
+            <div class="summary-number" id="suggestBookmark">0</div>
+            <div class="summary-label">To Bookmark</div>
+          </div>
+        </div>
+        <div class="summary-card clickable" data-list-action="keep" id="suggestKeepCard">
+          <div class="summary-icon">✅</div>
+          <div class="summary-content">
+            <div class="summary-number" id="suggestKeep">0</div>
+            <div class="summary-label">Keep Open</div>
+          </div>
+        </div>
+        <div class="summary-card clickable" id="duplicatesSummaryCard">
+          <div class="summary-icon">📋</div>
+          <div class="summary-content">
+            <div class="summary-number" id="duplicatesCount">0</div>
+            <div class="summary-label">Duplicates</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Action tab lists (shown when clicking summary cards) -->
+      <section class="action-lists-section">
+        <div id="closeListSection" class="action-list-section hidden">
+          <div class="action-list-header">
+            <span>❌ Suggested to Close</span>
+          </div>
+          <div id="closeList" class="action-tabs-list"></div>
+        </div>
+        <div id="bookmarkListSection" class="action-list-section hidden">
+          <div class="action-list-header">
+            <span>⭐ To Bookmark</span>
+          </div>
+          <div id="bookmarkList" class="action-tabs-list"></div>
+        </div>
+        <div id="keepListSection" class="action-list-section hidden">
+          <div class="action-list-header">
+            <span>✅ Keep Open</span>
+          </div>
+          <div id="keepList" class="action-tabs-list"></div>
+        </div>
+      </section>
+
+      <!-- Search & Duplicates -->
+      <section class="tools-section">
+        <div class="search-row">
+          <input type="text" id="tabSearch" class="search-input" placeholder="🔍 Search tabs by title or URL...">
+        </div>
+        <div id="duplicatesSection" class="duplicates-section hidden">
+          <div class="duplicates-header">
+            <span id="duplicatesLabel">0 duplicate tabs</span>
+            <button id="closeDuplicatesBtn" class="btn btn-sm btn-primary">Close Duplicates</button>
+          </div>
+          <div id="duplicatesList" class="duplicates-list"></div>
+        </div>
+      </section>
+
+      <!-- Export & Sessions -->
+      <section class="tools-section">
+        <div class="tools-row">
+          <button id="exportJsonBtn" class="btn btn-sm">Export JSON</button>
+          <button id="exportMdBtn" class="btn btn-sm">Export Markdown</button>
+          <button id="saveSessionBtn" class="btn btn-sm">Save Session</button>
+          <select id="restoreSessionSelect" class="restore-select">
+            <option value="">Restore Session...</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Auto Group Section -->
+      <section class="group-section">
+        <div class="section-header">
+          <h2>📑 Auto Group Tabs</h2>
+          <p class="section-description">Group tabs by category across all windows. Choose whether each category opens in a new window or stays as-is.</p>
+        </div>
+        <div id="groupingContainer" class="grouping-container"></div>
+        <div class="group-actions">
+          <button id="applyGroupingBtn" class="btn btn-primary">Apply Grouping</button>
+        </div>
+      </section>
+
+      <!-- Mode Selection (AI Auto Mode hidden for now) -->
+      <section class="mode-section hidden">
+        <div class="mode-selector">
+          <button id="manualModeBtn" class="mode-btn active">
+            👤 Manual Review
+          </button>
+          <button id="autoModeBtn" class="mode-btn">
+            🤖 Auto Mode (Claude)
+          </button>
+        </div>
+      </section>
+
+      <!-- Categories Section -->
+      <section class="categories-section">
+        <div class="section-header">
+          <h2>Categories</h2>
+          <div class="bulk-actions">
+            <button id="collapseAllBtn" class="btn btn-sm">Collapse All</button>
+            <button id="expandAllBtn" class="btn btn-sm">Expand All</button>
+            <button id="selectAllBtn" class="btn btn-sm">Select All</button>
+            <button id="deselectAllBtn" class="btn btn-sm">Deselect All</button>
+            <button id="executeSelectedBtn" class="btn btn-sm btn-primary">Execute Selected</button>
+          </div>
+        </div>
+
+        <div id="categoriesContainer"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

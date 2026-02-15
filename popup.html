@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tab Genius</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧠 Tab Genius</h1>
+      <p class="subtitle">AI-powered tab organization</p>
+    </header>
+
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Analyzing your tabs...</p>
+    </div>
+
+    <div id="content" class="hidden">
+      <div class="stats">
+        <div class="stat-card">
+          <span class="stat-number" id="totalTabs">0</span>
+          <span class="stat-label">Total Tabs</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="suggestClose">0</span>
+          <span class="stat-label">To Close</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="suggestBookmark">0</span>
+          <span class="stat-label">To Bookmark</span>
+        </div>
+      </div>
+
+      <div class="categories" id="categories"></div>
+
+      <div class="actions">
+        <button id="viewDashboard" class="btn btn-primary">
+          📊 View Full Dashboard
+        </button>
+        <button id="quickCleanup" class="btn btn-secondary">
+          🧹 Quick Cleanup
+        </button>
+      </div>
+
+      <div class="mode-toggle hidden">
+        <label>
+          <input type="checkbox" id="autoMode">
+          <span>Auto mode with Claude API</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
